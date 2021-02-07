@@ -7,7 +7,7 @@ const AddTransaction = () => {
 
   const { addTransaction } = React.useContext(GlobalContext);
 
-  const addTransactionHandler = ev => {
+  const addTransactionHandler = (ev) => {
     ev.preventDefault();
     addTransaction({ id: Math.random() * 100, text, amount: parseInt(amount) });
     setAmount('');
@@ -23,7 +23,7 @@ const AddTransaction = () => {
           <input
             type="text"
             value={text}
-            onChange={e => setText(e.target.value)}
+            onChange={(e) => setText(e.target.value)}
             placeholder="Enter text..."
           />
         </div>
@@ -35,13 +35,11 @@ const AddTransaction = () => {
           <input
             type="number"
             value={amount}
-            onChange={e => setAmount(e.target.value)}
+            onChange={(e) => setAmount(e.target.value)}
             placeholder="Enter amount..."
           />
         </div>
-        <button /* onClick={() => addTransactionHandler()} */ className="btn">
-          Add transaction
-        </button>
+        <button className="btn">Add transaction</button>
       </form>
     </>
   );

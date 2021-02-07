@@ -1,22 +1,19 @@
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'DELETE_TRANSACTION':
-      return {
-        ...state,
-        transactions: state.transactions.filter(
-          trans => trans.id !== action.payload,
-        ),
-      };
+import produce from 'immer';
 
-    case 'ADD_TRANSACTION':
-      return {
-        ...state,
-        transactions: [...state.transactions, action.payload],
-      };
+const reducer = (state, action) =>
+  produce(state, (draft) => {
+    switch (action.type) {
+      case 'DELETE_TRANSACTION':
+        draft.transactions = draft.transactions.filter((trans) => trans.id !== action.payload);
+        break;
 
-    default:
-      return state;
-  }
-};
+      case 'ADD_TRANSACTION':
+        draft.transactions.push(action.payload);
+        break;
+
+      default:
+        break;
+    }
+  });
 
 export default reducer;
